@@ -1,0 +1,74 @@
+<!doctype html>
+<meta charset = "UTF-8"></meta>
+<html>
+	
+	<body onload = "init();" style = "margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; width: 1280; height: 720;cursor:url('./Images/cursor.cur'),url('./Images/cursor.cur'),auto">
+		
+		<canvas id = "Screen" width = "1280" height = "720" style = "background-color:white;"></canvas>
+		
+		<script src = "Scripts/Scenes/game.js"></script>
+		<script src = "Scripts/Scenes/open.js"></script>
+		<script src = "Scripts/Scenes/menu.js"></script>
+		<script src = "Scripts/Scenes/intro.js"></script>
+		<script src = "Scripts/Scenes/credits.js"></script>
+		<script src = "Scripts/Scenes/lose.js"></script>
+		<script src = "Scripts/Scenes/win.js"></script>
+		<script src = "Scripts/Scenes/preload.js"></script>
+		<script src = "Scripts/Scenes/difficulty.js"></script>
+		
+		<script src = "Scripts/Elements/button.js"></script>
+		<script src = "Scripts/Elements/trapeze.js"></script>
+		<script src = "Scripts/Elements/player.js"></script>
+		<script src = "Scripts/Elements/pipe.js"></script>
+		<script src = "Scripts/Elements/spider.js"></script>
+		<script src = "Scripts/Elements/time.js"></script>
+		<script src = "Scripts/Elements/clovis.js"></script>
+		<script src = "Scripts/Elements/imageElement.js"></script>
+		
+		<script src = "Scripts/sceneManager.js"></script>
+		
+		<script>
+		
+			var canvas = document.getElementById("Screen");
+			var context = canvas.getContext("2d");
+			var images = new Array();
+			
+			var actinEvent = function(e)
+			{
+				scene.eventScene(e);
+			}
+			
+			var keyDown = function(e)
+			{
+				scene.keyDown(e);
+			}
+			
+			var keyUp = function(e)
+			{
+				scene.keyUp(e);
+			}
+			
+			var mouseMove = function(e)
+			{
+				scene.mouseMove(e);
+			}
+			
+			scene = new SceneManager(actinEvent, keyDown, keyUp, mouseMove);
+			
+			function init()
+			{
+				scene.setCurrentScene("preload");
+				loop();
+			}
+			
+			function loop()
+			{
+				scene.draw(context);
+				scene.update();
+				setTimeout(loop, 30);
+			}
+		</script>
+		
+	</body>
+
+</html>
